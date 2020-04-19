@@ -1,0 +1,58 @@
+<!-- 
+  @name = clothes-entry Component HTML
+  @author = Esther Vendrell
+  @version = 0.0.1
+  @description = Main user interface of the clothes-entry component
+  @date = 19-04-2020 -->
+  
+  <!--The content below is only a placeholder and can be replaced.-->
+<form>
+  <h1>Add clothes to the stock:</h1>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Cloth Type</th>
+				<th>Brand</th>
+				<th>Name</th>
+				<th>Price</th>
+				<th>In Sale</th>
+				<th>Remove</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let cloth of arr_clothes; let index = index">
+				<td>
+					<select class="form-control">
+						<option *ngFor="let type of arr_types">{{ type.name }}</option>
+					</select>
+				</td>
+				<td>
+					<input type="text" class="form-control" size="10">
+				</td>
+				<td>
+					<select class="form-control">
+						<option *ngFor="let size of arr_sizes">{{ size }}</option>
+					</select>
+				</td>
+				<td>
+					<input type="text" class="form-control" size="10">
+				</td>
+				<td>
+					<input type="checkbox" checked/>
+				</td>
+				<td>
+					<button class="btn btn-danger"
+					(click)="removeCloth(cloth)">X</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<button type="button" class="btn btn-primary" (click)="addCloth()">
+			Add
+	</button>
+	
+	<button type="submit" class="btn btn-success" (click)="entryCloth()">
+			Entry clothes
+	</button>
+</form>

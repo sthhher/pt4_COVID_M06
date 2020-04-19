@@ -1,3 +1,10 @@
+/*   
+  @name = App Component TS
+  @author = Esther Vendrell
+  @version = 0.0.1
+  @description = TypeScript of the App component
+  @date = 19-04-2020 */
+
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +13,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'pt4-COVID';
+  title = 'Second Hand';
+  action = 0;
 }
