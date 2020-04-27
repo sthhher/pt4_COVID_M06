@@ -5,7 +5,9 @@
   @description = TypeScript of the clothes-entry component
   @date = 19-04-2020 */
 
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
+
 import { Cloth } from '../model/Cloth';
 import { ClothType } from '../model/ClothType';
 import { ClothesService } from '../services/clothes.service';
@@ -17,10 +19,20 @@ import { ClothesService } from '../services/clothes.service';
 })
 export class ClothesEntryComponent implements OnInit {
   //properties
-  cloth: Cloth;
+  @Input() cloth: Cloth;
+  clothType: ClothType;
   arr_clothes: Cloth[] = [];
   arr_sizes: String[];
   arr_types: ClothType[];
+  id = 0;
+
+  /**
+   * @type {HTMLFormElement}
+   * @memberof ClothesEntryComponent
+   * @description for the form of html
+   */
+  @ViewChild('clothEntryForm', null) 
+  clothEntryForm: HTMLFormElement;
 
   //constructor
   constructor(private clothesService: ClothesService) { }
@@ -32,6 +44,7 @@ export class ClothesEntryComponent implements OnInit {
    */
   ngOnInit() {
     this.connection();
+    this.initializeForm(); 
   }
 
   /**
@@ -39,7 +52,7 @@ export class ClothesEntryComponent implements OnInit {
    * @description function that add a new Cloth Element into arr_clothes array.
    */
   addCloth() {
-    this.arr_clothes.push(new Cloth());
+    this.arr_clothes.push(new Cloth(this.id++,this.arr_types[0],undefined,this.arr_sizes[0],undefined,true));
   }
 
   /**
@@ -54,8 +67,28 @@ export class ClothesEntryComponent implements OnInit {
    * @name entryCloth
    * @description function IN PROGRESS.
    */
-  entryCloth() {
-    console.log("SENDED");
+  entryCloth(): void {
+    this.clothesService.clothInsertConection(this.arr_clothes).subscribe(outPutData => {
+      if (outPutData && Array.isArray(outPutData) && outPutData.length > 0) {
+        if (outPutData[0]) {
+          console.log("Data inserted successfully");
+        } else {
+          console.log("Error inserting the data");
+        }
+      } else {
+        console.log("There has been an error. Please, try later");
+      }
+    }
+  )}
+
+  /**
+   * @name initializeForm
+   * @description function that initialize the form.
+   */
+  initializeForm(){
+    this.clothEntryForm.reset();
+    this.clothEntryForm.form.markAsPristine();
+    this.clothEntryForm.form.markAsUntouched();
   }
 
   /**
@@ -76,8 +109,8 @@ export class ClothesEntryComponent implements OnInit {
       } else {
         console.log("There has been an error. Please, try later");
       }
-      this.arr_sizes = this.clothesService.arr_sizes;
-      this.cloth = new Cloth();
+      this.arr_sizes = this.clothesService.arr_sizes; 
+      this.cloth = new Cloth(this.id++,this.arr_types[0],undefined,this.arr_sizes[0],undefined,true);
       this.arr_clothes.push(this.cloth);
     }
   )} 

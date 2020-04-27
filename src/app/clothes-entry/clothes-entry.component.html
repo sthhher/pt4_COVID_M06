@@ -6,7 +6,7 @@
   @date = 19-04-2020 -->
   
   <!--The content below is only a placeholder and can be replaced.-->
-<form>
+<form #clothEntryForm="ngForm" (submit)="entryCloth()">
   <h1>Add clothes to the stock:</h1>
 	<table class="table table-bordered">
 		<thead>
@@ -20,25 +20,41 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let cloth of arr_clothes; let index = index">
+			<tr *ngFor="let cloth of arr_clothes">
 				<td>
-					<select class="form-control">
-						<option *ngFor="let type of arr_types">{{ type.name }}</option>
+					<select class="form-control" name="clothType{{cloth.id}}" [(ngModel)]="cloth.clothType" required>
+						<option *ngFor="let clothType of arr_types" [ngValue]="clothType">{{ clothType.name }}</option>
 					</select>
 				</td>
 				<td>
-					<input type="text" class="form-control" size="10">
+					<input type="text" class="form-control" #clothBrand="ngModel" name="clothBrand{{cloth.id}}" [(ngModel)]="cloth.brand" size="10" maxlength="150" required/>
+					<!-- div error Brand when is empty-->
+					<div class="is-invalid" *ngIf="!clothBrand.pristine && clothBrand.errors?.required">
+						<span class="text-danger">Please, enter a brand</span>
+					</div>
+					<!-- div error Brand when length is higher than maximum-->
+					<div *ngIf="clothBrand.errors && clothBrand.errors.maxlength && !clothBrand.errors.required">
+                        <span class="text-danger">Please, enter maximum 150 characters</span>
+                    </div>
 				</td>
 				<td>
-					<select class="form-control">
-						<option *ngFor="let size of arr_sizes">{{ size }}</option>
+					<select class="form-control" name="clothSize{{cloth.id}}" [(ngModel)]="cloth.size" required>
+						<option *ngFor="let size of arr_sizes" [ngValue]="size" >{{ size }}</option>
 					</select>
 				</td>
 				<td>
-					<input type="text" class="form-control" size="10">
+					<input type="text" class="form-control" #clothPrice="ngModel" name="clothPrice{{cloth.id}}" [(ngModel)]="cloth.price" size="10" min="0" pattern="^[0-9]{1,4}\.[0-9]{2}$" required/>
+					<!-- div error Price when is empty-->
+					<div class="is-invalid" *ngIf="!clothPrice.pristine && clothPrice.errors?.required">
+						<span class="text-danger">Please, enter a price</span>
+					</div>
+					<!-- div error Price when is different to the pattern-->
+					<div class="is-invalid" *ngIf="!clothPrice.pristine && clothPrice.errors?.pattern">
+						<span class="text-danger">Please, enter a valid price ([1-4 digits].[2 decimals])</span>
+					</div>
 				</td>
 				<td>
-					<input type="checkbox" checked/>
+					<input type="checkbox" name="clothInSale{{cloth.id}}" [(ngModel)]="cloth.inSale" checked/>
 				</td>
 				<td>
 					<button class="btn btn-danger"
@@ -52,7 +68,7 @@
 			Add
 	</button>
 	
-	<button type="submit" class="btn btn-success" (click)="entryCloth()">
+	<button type="submit"  [disabled]="!clothEntryForm.valid" class="btn btn-success">
 			Entry clothes
 	</button>
 </form>

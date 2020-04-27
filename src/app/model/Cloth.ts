@@ -8,116 +8,117 @@
 import { ClothType } from './ClothType';
 
 export class Cloth {
-    private _id: Number;
-    private _clothType: ClothType;
-    private _brand: String;
-    private _size: String;
-    private _price: Number;
-    private _inSale: Boolean;
+    private id: Number;
+    private clothType: ClothType;
+    private brand: String;
+    private size: String;
+    private price: Number;
+    private inSale: Boolean;
+
+	constructor($id?: Number, $clothType?: ClothType, $brand?: String, $size?: String, $price?: Number, $inSale?: Boolean) {
+		this.id = $id;
+		this.clothType = $clothType;
+		this.brand = $brand;
+		this.size = $size;
+		this.price = $price;
+		this.inSale = $inSale;
+	}
 
 
-	constructor(id?: Number, clothType?: ClothType, brand?: String, size?: String, price?: Number, inSale?: Boolean) {
-		this._id = id;
-		this._clothType = clothType;
-		this._brand = brand;
-		this._size = size;
-		this._price = price;
-		this._inSale = inSale;
-    }
-    
     /**
-     * Getter id
+     * Getter $id
      * @return {Number}
      */
-	public get id(): Number {
-		return this._id;
+	public get $id(): Number {
+		return this.id;
 	}
 
     /**
-     * Getter clothType
+     * Getter $clothType
      * @return {ClothType}
      */
-	public get clothType(): ClothType {
-		return this._clothType;
+	public get $clothType(): ClothType {
+		return this.clothType;
 	}
 
     /**
-     * Getter brand
+     * Getter $brand
      * @return {String}
      */
-	public get brand(): String {
-		return this._brand;
+	public get $brand(): String {
+		return this.brand;
 	}
 
     /**
-     * Getter size
+     * Getter $size
      * @return {String}
      */
-	public get size(): String {
-		return this._size;
+	public get $size(): String {
+		return this.size;
 	}
 
     /**
-     * Getter price
+     * Getter $price
      * @return {Number}
      */
-	public get price(): Number {
-		return this._price;
+	public get $price(): Number {
+		return this.price;
 	}
 
     /**
-     * Getter inSale
+     * Getter $inSale
      * @return {Boolean}
      */
-	public get inSale(): Boolean {
-		return this._inSale;
+	public get $inSale(): Boolean {
+		return this.inSale;
 	}
 
     /**
-     * Setter id
+     * Setter $id
      * @param {Number} value
      */
-	public set id(value: Number) {
-		this._id = value;
+	public set $id(value: Number) {
+		this.id = value;
 	}
 
     /**
-     * Setter clothType
+     * Setter $clothType
      * @param {ClothType} value
      */
-	public set clothType(value: ClothType) {
-		this._clothType = value;
+	public set $clothType(value: ClothType) {
+		this.clothType = value;
 	}
 
     /**
-     * Setter brand
+     * Setter $brand
      * @param {String} value
      */
-	public set brand(value: String) {
-		this._brand = value;
+	public set $brand(value: String) {
+		this.brand = value;
 	}
 
     /**
-     * Setter size
+     * Setter $size
      * @param {String} value
      */
-	public set size(value: String) {
-		this._size = value;
+	public set $size(value: String) {
+		this.size = value;
 	}
 
     /**
-     * Setter price
+     * Setter $price
      * @param {Number} value
      */
-	public set price(value: Number) {
-		this._price = value;
+	public set $price(value: Number) {
+		this.price = value;
 	}
 
     /**
-     * Setter inSale
+     * Setter $inSale
      * @param {Boolean} value
      */
-	public set inSale(value: Boolean) {
-		this._inSale = value;
+	public set $inSale(value: Boolean) {
+		this.inSale = value;
 	}
+
 }

@@ -18,6 +18,7 @@ export class ClothesService {
   //properties
   private mainUrl: string = "http://localhost/~esther/clothesM06/controllers/MainController.php";
   private body: any;
+  private bodyDB: any;
   private httpParams: HttpParams = new HttpParams();
   arr_sizes = ["XXS", "XS","S", "M", "L", "XL", "XXL"];
 
@@ -35,6 +36,31 @@ export class ClothesService {
     }
 
     return this.accessServer();
+  }
+
+  /**
+   * @name clothConection
+   * @description This method is to do the body of the entryClothDB and return the accessServer method
+   */
+  clothInsertConection(arr_clothes: Cloth[]): Observable<any[]> {
+    this.body={
+      action: '10010',
+      jsonData: JSON.stringify(arr_clothes)
+    }
+
+    return this.accessServer();
+  }
+
+  /**
+   * @name entryClothDB
+   * @description This method is to insert the data of the body in DB
+   */
+  entryClothDB(): Observable<any[]>  {
+    let httpHeaders: HttpHeaders = new HttpHeaders();
+
+    httpHeaders.set('Content-Type', 'application/x-www-form-urlencoded');
+
+    return this.http.post<any[]>(this.mainUrl, this.bodyDB, {headers: httpHeaders, params: this.httpParams});
   }
 
   /**
