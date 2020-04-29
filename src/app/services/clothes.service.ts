@@ -26,10 +26,10 @@ export class ClothesService {
   constructor(private http: HttpClient) { }
 
   /**
-   * @name clothConection
-   * @description This method is to do the body of the connection and return the accessServer method
+   * @name getClothTypesConection
+   * @description This method is to do the body for the connection. Get all the clothTypes(action 10000) from DB.
    */
-  clothConection(): Observable<any[]> {
+  getClothTypesConection(): Observable<any[]> {
     this.body={
       action: '10000',
       jsonData: ''
@@ -39,10 +39,10 @@ export class ClothesService {
   }
 
   /**
-   * @name clothConection
-   * @description This method is to do the body of the entryClothDB and return the accessServer method
+   * @name setClothConection
+   * @description This method is to do the body for the connection. Insert the clothes (action 10010) into DB.
    */
-  clothInsertConection(arr_clothes: Cloth[]): Observable<any[]> {
+  setClothConection(arr_clothes: Cloth[]): Observable<any[]> {
     this.body={
       action: '10010',
       jsonData: JSON.stringify(arr_clothes)
@@ -52,15 +52,27 @@ export class ClothesService {
   }
 
   /**
-   * @name entryClothDB
-   * @description This method is to insert the data of the body in DB
+   * @name getClothesConection
+   * @description This method is to do the body for the connection. Get all the clothes(action 10020) from DB.
    */
-  entryClothDB(): Observable<any[]>  {
-    let httpHeaders: HttpHeaders = new HttpHeaders();
+   getClothesConection(): Observable<any[]> {
+    this.body={
+      action: '10020',
+      jsonData: ''
+    }
 
-    httpHeaders.set('Content-Type', 'application/x-www-form-urlencoded');
+    return this.accessServer();
+  }
 
-    return this.http.post<any[]>(this.mainUrl, this.bodyDB, {headers: httpHeaders, params: this.httpParams});
+  /**
+   * @name generateDate
+   * @description This method is not used but it is if you want to enter a date sale with actual date
+   */
+  generateDate() {
+    var d = new Date();
+    var newDate = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + d.getDate();
+
+    return newDate;
   }
 
   /**

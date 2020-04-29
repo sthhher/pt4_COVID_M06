@@ -4,3 +4,106 @@
   @version = 0.0.1
   @description = Main user interface of the clothes-management component
   @date = 19-04-2020 -->
+
+  <div class="container well">
+    <!-- First div will contain filters and 
+        pagination params -->
+    <form #clothFilterForm="ngForm" novalidate>
+        <table class="table table-striped">
+            <tr>
+                <td>Items per page:</td>
+                <td>
+                  <input #items="ngModel" type="number" [(ngModel)]="itemsPerPage" name="itemsPerPage" inputmode="numeric" minlength="1" pattern="^[1-9][0-9]*$" required>
+                  <!-- minlength="1" pattern="^[1-9][0-9]*$" -->
+                  <!-- Error div when error required -->
+                  <div class="col-sm-4" *ngIf="!items.pristine && items.errors && items.errors.required">
+                      <span class="text-danger">Please, enter a number</span>
+                  </div>
+                  <!-- Error div when error pattern -->
+                  <div class="col-sm-4" *ngIf="items.errors && items.errors.pattern">
+                      <span class="text-danger">This field only accept positive integers!</span>
+                  </div>
+                </td>
+            </tr>
+            <tr>
+                <td >Number of clothes:</td>
+                <td *ngIf="!items.errors">{{clothesFiltered.length}}</td>
+                <td *ngIf="items.errors">0</td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+<!-- Div when there are errors in items per page -->
+<div *ngIf="items.errors" class="container well">
+    <h2>Cloths management</h2>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+              <th>ClothType</th>
+              <th>Brand</th>
+              <th>Size</th>
+              <th>Price</th>
+              <th>In Sale</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="5" style="text-align:center">Any cloth found</td>
+          </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Div when there are NOT errors in items per page -->
+<div *ngIf="!items.errors" class="container well">
+    <h2>Cloths management</h2>
+    <!-- Div 3 will be shown in case there are records
+    to display -->
+    <form #clothManagementForm="ngForm" novalidate>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ClothType</th>
+                    <th>Brand</th>
+                    <th>Size</th>
+                    <th>Price</th>
+                    <th>In Sale</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cl of
+                clothesFiltered | 
+                 paginate: {
+                     itemsPerPage: itemsPerPage,
+                     currentPage: currentPage
+                 }"
+                 >
+                    <td>
+                      <select class="form-control">
+                        <option *ngFor="let clothType of clothTypes" [selected]="cl.clothType.name == clothType.name" disabled>{{ clothType.name }}</option>
+                      </select>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" size="10" value="{{cl.brand}}" readonly/>
+                    </td>
+                    <td>
+                      <select class="form-control">
+                        <option *ngFor="let size of arr_sizes" [selected]="cl.size == size" disabled>{{ size }}</option>
+                      </select>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" size="10" value="{{cl.price}}" readonly/>
+                    </td>
+                    <td>
+                      <input *ngIf="cl.inSale == 1" (click)="returnFalse()" type="checkbox" checked/>
+                      <input *ngIf="cl.inSale == 0" (click)="returnFalse()" type="checkbox"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination-controls (pageChange)="currentPage=$event"
+            maxSize="5"
+            directionLinks="true">
+        </pagination-controls>
+    </form>
+</div>

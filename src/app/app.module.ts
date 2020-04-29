@@ -17,6 +17,7 @@ import { ClothesManagementComponent } from './clothes-management/clothes-managem
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'; 
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 //routing
 const appRoutes: Routes = [
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(  
       appRoutes, {enableTracing: false} //True for debugging purpouses only     
-    )
+    ),
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

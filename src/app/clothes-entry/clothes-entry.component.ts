@@ -25,6 +25,7 @@ export class ClothesEntryComponent implements OnInit {
   arr_sizes: String[];
   arr_types: ClothType[];
   id = 0;
+  saleDate: String;
 
   /**
    * @type {HTMLFormElement}
@@ -52,6 +53,7 @@ export class ClothesEntryComponent implements OnInit {
    * @description function that add a new Cloth Element into arr_clothes array.
    */
   addCloth() {
+    this.saleDate = this.clothesService.generateDate();
     this.arr_clothes.push(new Cloth(this.id++,this.arr_types[0],undefined,this.arr_sizes[0],undefined,true));
   }
 
@@ -68,7 +70,7 @@ export class ClothesEntryComponent implements OnInit {
    * @description function IN PROGRESS.
    */
   entryCloth(): void {
-    this.clothesService.clothInsertConection(this.arr_clothes).subscribe(outPutData => {
+    this.clothesService.setClothConection(this.arr_clothes).subscribe(outPutData => {
       if (outPutData && Array.isArray(outPutData) && outPutData.length > 0) {
         if (outPutData[0]) {
           console.log("Data inserted successfully");
@@ -99,7 +101,7 @@ export class ClothesEntryComponent implements OnInit {
    * Add this variable new cloth to the arr_clothes.
    */
   connection() {
-    this.clothesService.clothConection().subscribe(outPutData => {
+    this.clothesService.getClothTypesConection().subscribe(outPutData => {
       if (outPutData && Array.isArray(outPutData) && outPutData.length > 0) {
         if (outPutData[0]) {
           this.arr_types = outPutData[1];
