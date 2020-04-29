@@ -4,11 +4,15 @@
   @version = 0.0.1
   @description = Main user interface of the clothes-entry component
   @date = 19-04-2020 -->
-  
-  <!--The content below is only a placeholder and can be replaced.-->
+
 <div class="container well">
   <form #clothEntryForm="ngForm" (submit)="entryCloth()">
   <h1>Add clothes to the stock:</h1>
+  
+  <!-- Div added elements -->
+  <div *ngIf="added == 1" class="alert alert-primary" role="alert"> Data inserted successfully </div>
+  <!-- Div Error insert elements --> 
+  <div *ngIf="added == 2" class="alert alert-danger" role="alert"> ERROR </div>
 	<table class="table table-bordered">
 		<thead>
 			<tr>

@@ -5,7 +5,6 @@
   @description = TypeScript of the clothes-entry component
   @date = 19-04-2020 */
 
-
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 
 import { Cloth } from '../model/Cloth';
@@ -25,7 +24,10 @@ export class ClothesEntryComponent implements OnInit {
   arr_sizes: String[];
   arr_types: ClothType[];
   id = 0;
-  saleDate: String;
+  added = 0;
+  //Added = 0 => nothing
+  //Added = 1 => success
+  //Added = 2 => error
 
   /**
    * @type {HTMLFormElement}
@@ -53,7 +55,7 @@ export class ClothesEntryComponent implements OnInit {
    * @description function that add a new Cloth Element into arr_clothes array.
    */
   addCloth() {
-    this.saleDate = this.clothesService.generateDate();
+    this.added = 0;
     this.arr_clothes.push(new Cloth(this.id++,this.arr_types[0],undefined,this.arr_sizes[0],undefined,true));
   }
 
@@ -62,6 +64,7 @@ export class ClothesEntryComponent implements OnInit {
    * @description function that remove a Cloth Element from the arr_clothes array.
    */
   removeCloth(cloth: Cloth) {
+    this.added = 0;
     this.arr_clothes.splice(this.arr_clothes.indexOf(cloth), 1);
   }
 
@@ -73,11 +76,14 @@ export class ClothesEntryComponent implements OnInit {
     this.clothesService.setClothConection(this.arr_clothes).subscribe(outPutData => {
       if (outPutData && Array.isArray(outPutData) && outPutData.length > 0) {
         if (outPutData[0]) {
+          this.added = 1;
           console.log("Data inserted successfully");
         } else {
+          this.added = 2;
           console.log("Error inserting the data");
         }
       } else {
+        this.added = 2;
         console.log("There has been an error. Please, try later");
       }
     }
@@ -88,6 +94,7 @@ export class ClothesEntryComponent implements OnInit {
    * @description function that initialize the form.
    */
   initializeForm(){
+    this.added = 0;
     this.clothEntryForm.reset();
     this.clothEntryForm.form.markAsPristine();
     this.clothEntryForm.form.markAsUntouched();
