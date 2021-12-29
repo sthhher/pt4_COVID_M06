@@ -2,11 +2,13 @@
 
 Este proyecto ha sido creado por Guillermo Vidal y Esther Vendrell
 
-## Estructura del codigo
+#### Estructura del codigo
 
 Dividimos nuestro proyecto en diferentes ficheros:
 1. main.c
-   - Blabla
+   - Llamamos a las funciones necesarias para la inicialización del programa.
+   - Printamos por linea serie una pantalla principal en la que aparecen nuestros nombres. 
+   - En el while de nuestro main llamamos constantemente a la funcion `movePlayer()` del archivo player.h (explicada posteriormente). De esta manera estaremos comprobando constantemente si se produce algun movimiento en nuestro jugador.
 2. initial.h
    - Inicializamos todos los datos necesarios para la realización del proyecto.
    - Tenemos la función `inicialize()` donde inicializamos la pantalla y printamos por pantalla los dibujos (del archivo splash.h).
@@ -21,7 +23,7 @@ Dividimos nuestro proyecto en diferentes ficheros:
 7. GLCD.h
 8. ascii.h
 
-## Problemes trobats
+#### Problemes trobats
 
 Durante la realización del proyecto hemos tenido varios problemas ya que ha implicado juntar todos nuestros conocimientos. El problema más destacables ha sido:
    - Los enemigos se movian demasiado rápido.
@@ -29,11 +31,11 @@ Durante la realización del proyecto hemos tenido varios problemas ya que ha imp
 [^note]:
     Uno de nuestros requisitos ha sido no usar delays para solventar este inconveniente.
 
-## Solucions implementades
+#### Solucions implementades
 
 La solución al problema descrito anteriormente ha sido añadir un contador que cada X numero de tics hiciera un movimiento.
 
-## Niveles de nuestro proyecto
+#### Niveles de nuestro proyecto
 
 **Level 1:** 
 2. initial.h
