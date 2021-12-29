@@ -36,7 +36,7 @@ La solución al problema descrito anteriormente ha sido añadir un contador que 
 
 ### Niveles de nuestro proyecto
 
-   - **Nivel 1** *[0,25)%* **:** cddvfd
+   - **Nivel 1:** *[0,25)%* cddvfd
    - **Nivel 2:** 
    - **Nivel 3:** 
    - **Nivel 4:** 
