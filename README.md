@@ -36,7 +36,27 @@ La solución al problema descrito anteriormente ha sido añadir un contador que 
 
 ### Niveles de nuestro proyecto
 
-   - **Nivel 1:** *[0,25)%* cddvfd
-   - **Nivel 2:** 
-   - **Nivel 3:** 
-   - **Nivel 4:** 
+   - **Nivel 1:** [0,25)%. 
+     - 4 vidas
+     - 3 combustibles para ganar
+     - 1 enemigo que se mueve en diagonal
+
+   - **Nivel 2:** [25,50)%.
+     - 4 vidas
+     - 5 combustibles para ganar
+     - 1 enemigo que se mueve en diagonal
+
+   - **Nivel 3:** [50,75)%.
+     - 3 vidas
+     - 5 combustibles para ganar
+     - 1 enemigo que se mueve en diagonal
+
+   - **Nivel 4:** [75,100)%.
+     - 3 vidas
+     - 5 combustibles para ganar
+     - 2 enemigos. Uno de ellos va de derecha a izquierda (si sube o baja es aleatorio) y, es mas lento. El otro se mueve en diagonal.
+
+   - **Nivel 5:** 100%.
+     - 3 vidas
+     - 5 combustibles para ganar
+     - 3 enemigos. Uno de ellos va de derecha a izquierda (si sube o baja es aleatorio) y, es mas lento. El otro se mueve en diagonal. Y, el último te persigue pero aún mas lento.
