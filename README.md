@@ -27,12 +27,7 @@ Dividimos nuestro proyecto en diferentes ficheros:
 
 Durante la realización del proyecto hemos tenido varios problemas ya que ha implicado juntar todos nuestros conocimientos. El problema más destacables ha sido:
    - Los enemigos se movian demasiado rápido.
----
-**NOTE**
-
-It works with almost all markdown flavours (the below blank line matters).
-
----
+> **_NOTE:_**  The note content.
 
 [^note]:
     Uno de nuestros requisitos ha sido no usar delays para solventar este inconveniente.
