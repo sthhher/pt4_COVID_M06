@@ -2,7 +2,7 @@
 
 Este proyecto ha sido creado por Guillermo Vidal y Esther Vendrell
 
-#### Estructura del codigo
+### Estructura del codigo
 
 Dividimos nuestro proyecto en diferentes ficheros:
 1. main.c
@@ -23,21 +23,20 @@ Dividimos nuestro proyecto en diferentes ficheros:
 7. GLCD.h
 8. ascii.h
 
-#### Problemes trobats
+### Problemes trobats
 
 Durante la realización del proyecto hemos tenido varios problemas ya que ha implicado juntar todos nuestros conocimientos. El problema más destacables ha sido:
    - Los enemigos se movian demasiado rápido.
-> **_NOTE:_**  The note content.
 
-[^note]:
-    Uno de nuestros requisitos ha sido no usar delays para solventar este inconveniente.
+> **_NOTE:_**  Uno de nuestros requisitos ha sido no usar delays para solventar este inconveniente.
 
-#### Solucions implementades
+### Solucions implementades
 
 La solución al problema descrito anteriormente ha sido añadir un contador que cada X numero de tics hiciera un movimiento.
 
-#### Niveles de nuestro proyecto
+### Niveles de nuestro proyecto
 
-**Level 1:** 
-2. initial.h
-3. Level
+   - **Nivel 1** *[0,25)%* **:** cddvfd
+   - **Nivel 2:** 
+   - **Nivel 3:** 
+   - **Nivel 4:** 
