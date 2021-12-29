@@ -1,27 +1,40 @@
-# Pt4COVID
+# Proyecto CI - JetPIC L12
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
+Este proyecto ha sido creado por Guillermo Vidal y Esther Vendrell
 
-## Development server
+## Estructura del codigo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Dividimos nuestro proyecto en diferentes ficheros:
+1. main.c
+   - Blabla
+2. initial.h
+   - Inicializamos todos los datos necesarios para la realización del proyecto.
+   - Tenemos la función `inicialize()` donde inicializamos la pantalla y printamos por pantalla los dibujos (del archivo splash.h).
+3. config.h
+4. player.h
+   - Tenemos la funcion `movePlayer()` la qual tiene en cuenta el movimiento de nuestro jugador, tanto si es por Línea serie como si es por botones.
+5. enemies.h
+   - Estan las diferentes funciones para mover a los enemigos de los diversos niveles de dificultad. 
+6. splash.h
+   - Caracteres en bitmap.
+   - Función para printar los carácteres de bitmap.
+7. GLCD.h
+8. ascii.h
 
-## Code scaffolding
+## Problemes trobats
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Durante la realización del proyecto hemos tenido varios problemas ya que ha implicado juntar todos nuestros conocimientos. El problema más destacables ha sido:
+   - Los enemigos se movian demasiado rápido.
 
-## Build
+[^note]:
+    Uno de nuestros requisitos ha sido no usar delays para solventar este inconveniente.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Solucions implementades
 
-## Running unit tests
+La solución al problema descrito anteriormente ha sido añadir un contador que cada X numero de tics hiciera un movimiento.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Niveles de nuestro proyecto
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+**Level 1:** 
+2. initial.h
+3. Level
